@@ -1,17 +1,25 @@
 module.exports = {
-  entry: './app/App.js',
-  output: {
-    path: './public',
-    filename: 'bundle.js'
+  entry: {
+    main: './app/App.js',
   },
+
+  output: {
+    filename: 'bundle.js',
+    path: './public'
+  },
+  devtool: 'sourcemap',
   module: {
     loaders: [
       {
         test: /\.js$/,
-        include: /app/,
         exclude: /node_modules/,
-        loader: 'babel?presets[]=react'
+        loader: 'babel'
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: 'css'
       }
     ]
   }
-};
+}

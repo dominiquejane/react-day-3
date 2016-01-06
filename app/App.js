@@ -1,6 +1,42 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, Link, IndexRoute } from 'react-router';
+import About from './About-Route.js';
+import Contact from './Contact-Route.js';
+import Home from './Home-Route.js';
+
 // create an App component for our application
 // render it to the DOM
 // add 3 links with the following hrefs: '#/', '#/about', '#/contact'
+
+var App = React.createClass({
+	render() {
+		return (
+			<div>
+				<div>React App</div>
+
+				<Link to="/" >Home</Link>
+				<Link to="/about/dom" >About</Link>
+				<Link to="/contact" >Contact</Link>
+
+				{this.props.children}
+
+			</div>
+
+		)
+	}
+});
+
+ReactDOM.render(
+		<Router>
+			<Route component={App} path="/">
+				<IndexRoute component={Home} />
+				<Route path="about/:name" component={About} />
+				<Route path="contact" component={Contact} />
+			</Route>
+		</Router>, 
+		document.getElementById("app")
+);
 
 // add `route` to the state, use getInitialState to set the default value to the hash portion of the browser url
 // in componentDidMount, create an event listener that will listen to any changes to the browser url
